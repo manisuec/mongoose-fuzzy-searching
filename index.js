@@ -130,16 +130,20 @@ module.exports = function (schema, pluginOptions) {
     throw new Error('You must set at least one field for fuzzy search.');
   }
 
-  const { fields, middlewares } = pluginOptions;
+  const { fields, middlewares, equalityFilter } = pluginOptions;
 
   if (!Array.isArray(fields)) {
     throw new TypeError('Fields must be an array.');
   }
 
+  if (isObject(equalityFilter) && Object.keys(equalityFilter).length !== 1) {
+    throw new TypeError('Equality filter can have only one filter');
+  }
+
   fields.forEach(validateItem);
   validateMiddlewares(middlewares);
 
-  const { indexes, weights } = createFields(schema, fields);
+  const { indexes, weights } = createFields(schema, fields, equalityFilter);
   schema.index(indexes, { weights, name: 'fuzzy_text' });
 
   const hideElements = removeFuzzyElements(fields);
