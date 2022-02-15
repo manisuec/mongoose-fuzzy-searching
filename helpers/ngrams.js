@@ -75,7 +75,9 @@ const makeNGrams = (constants, replaceSymbols) => (
     return [];
   }
 
-  const result = text
+  const trimmedText = text.replace(/\s+/g,' ');
+
+  const result = trimmedText
     .split(' ')
     .map((q) =>
       nGrams(constants)(
