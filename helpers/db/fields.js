@@ -145,9 +145,9 @@ const createFields = (addToSchema, addArrayToSchema, createField, MixedType) => 
   fields.forEach(createField(create));
 
   if (Object.keys(create.equalityFilter).length > 0) {
-    create.indexes = {...create.equalityFilter, ...create.indexes};
+    create.indexes = { ...create.equalityFilter, ...create.indexes };
   }
-  
+
   return { indexes: create.indexes, weights: create.weights };
 };
 

@@ -33,7 +33,7 @@ const nGrams = (constants) => (text, minSize, prefixOnly) => {
   index = prefixOnly ? 0 : text.length - minSize + 1;
 
   if (text.length <= minSize) {
-    return [text];
+    return [];
   }
 
   if (prefixOnly) {
@@ -75,7 +75,7 @@ const makeNGrams = (constants, replaceSymbols) => (
     return [];
   }
 
-  const trimmedText = text.replace(/\s+/g,' ');
+  const trimmedText = text.replace(/\s+/g, ' ');
 
   const result = trimmedText
     .split(' ')
