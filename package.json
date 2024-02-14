@@ -41,7 +41,7 @@
   "homepage": "https://github.com/VassilisPallas/mongoose-fuzzy-searching",
   "license": "MIT",
   "peerDependencies": {
-    "mongoose": "^5.11.10"
+    "mongoose": "^6.12.6"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
