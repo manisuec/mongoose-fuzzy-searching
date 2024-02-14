@@ -54,7 +54,7 @@
     "jest": "^26.0.1",
     "lint-staged": "^10.2.2",
     "mongodb-memory-server": "^6.6.0",
-    "mongoose": "^5.10.11",
+    "mongoose": "^6.12.6",
     "prettier": "^2.0.5"
   }
 }
