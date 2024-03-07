@@ -9,6 +9,7 @@ const {
   setTransformers,
   nGrams,
 } = require('./helpers');
+const { Query } = require('mongoose');
 
 const parseArguments = (args, i1, i2) => {
   let options = {};
@@ -109,6 +110,10 @@ function fuzzySearch(...args) {
     search = {
       $and: [{ $text: { $search: query } }, options],
     };
+  }
+
+  if (this instanceof Query) {
+    return this.find.apply(this, [search, callback]);
   }
 
   return this.find.apply(this, [
