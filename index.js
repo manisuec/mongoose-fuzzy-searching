@@ -79,6 +79,8 @@ const getArgs = (queryArgs) => {
 
 function fuzzySearch(...args) {
   const queryArgs = Object.values(args);
+  const { callback, options } = parseArguments(queryArgs, 1, 2);
+
   if (queryArgs.length === 0 || (!isString(queryArgs[0]) && !isObject(queryArgs[0]))) {
     throw new TypeError(
       'Fuzzy Search: First argument is mandatory and must be a string or an object.',
@@ -87,7 +89,7 @@ function fuzzySearch(...args) {
 
   const { exact, queryString } = getArgs(queryArgs[0]);
   if (!queryString) {
-    return this.find();
+    return this.find(options);
   }
 
   const { checkPrefixOnly, defaultNgamMinSize } = getDefaultValues(queryArgs[0]);
@@ -95,8 +97,6 @@ function fuzzySearch(...args) {
   const query = exact
     ? `"${queryString}"`
     : nGrams(queryString, false, defaultNgamMinSize, checkPrefixOnly).join(' ');
-
-  const { callback, options } = parseArguments(queryArgs, 1, 2);
 
   let search;
 
